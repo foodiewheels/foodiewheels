@@ -45,13 +45,11 @@ var Geography = db.define('Geography', {
   }
 });
 
-var models = [
-  'User',
-  'Truck',
-  'Menu',
-  'Geography'
-];
+/*
+  Add sync commands!
+*/
 
-models.forEach(function (model) {
-  module.exports[model] = sequelize.import(model);
-});
+module.exports.User = sequelize.import('User');
+module.exports.Truck = sequelize.import('Truck');
+module.exports.Menu = sequelize.import('Menu');
+module.exports.Geography = sequelize.import('Geography');
