@@ -44,3 +44,14 @@ var Geography = db.define('Geography', {
     validate: { min: -180, max: 180 }
   }
 });
+
+var models = [
+  'User',
+  'Truck',
+  'Menu',
+  'Geography'
+];
+
+models.forEach(function (model) {
+  module.exports[model] = sequelize.import(model);
+});
