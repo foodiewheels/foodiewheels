@@ -7,13 +7,16 @@ module.exports = function (sequelize, DataTypes) {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
-  },
-  classMethods: {
-    generateHash: function (password) {
-      return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  }, {
+    classMethods: {
+      generateHash: function (password) {
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+      }
     },
-    validPassword: function (password) {
-      return bcrypt.compareSync(password, this.password);
+    instanceMethods: {
+      validPassword: function (password) {
+        return bcrypt.compareSync(password, this.password);
+      }
     }
   });
 

@@ -3,9 +3,12 @@ var express = require('express')
   , bodyParser = require('body-parser')
   , cookieParser = require('cookie-parser')
   , passport = require('passport')
+  , db = require('./db')
   ;
 
 var server = express();
+server.set('port', process.env.PORT || 3030);
+
 require('./passport')(passport);
 
 server.use(cookieParser());
@@ -33,4 +36,13 @@ server.post('/user/login',
 
 // GET Routes ==================================================================
 
-module.exports = server;
+module.exports = function (done) {
+  db.sequelize.sync()
+    .then(function () {
+      return done(null, server);
+    })
+    .catch(function (err) {
+      return done(err);
+    })
+  ;
+};

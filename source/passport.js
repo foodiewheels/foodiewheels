@@ -3,7 +3,6 @@ var LocalStrategy = require('passport-local').Strategy
   ;
 
 function authenticate (passport) {
-
   passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
@@ -21,17 +20,17 @@ function authenticate (passport) {
 
   passport.use('register',
     new LocalStrategy({
-      usernameField: 'email',
+      usernameField: 'username',
       passwordField: 'password',
       passReqToCallback: true
     },
-    function (req, email, password, done) {
+    function (req, username, password, done) {
       db.User.find({where: {username: username}})
         .then(function (user) {
           if (!user) {
             db.User.create({
               username: username,
-              password: this.generateHash(password)
+              password: db.User.generateHash(password)
             })
             .then(function (newUser) {
               return done(null, newUser);
@@ -40,7 +39,9 @@ function authenticate (passport) {
               return done(err);
             })
           }
-          return done(null, false);
+          else {
+            return done(null, false);
+          }
         })
         .catch(function (err) {
           return done(err);
@@ -51,11 +52,11 @@ function authenticate (passport) {
 
   passport.use('login',
     new LocalStrategy({
-      usernameField: 'email',
+      usernameField: 'username',
       passwordField: 'password',
       passReqToCallback: true
     },
-    function (req, email, password, done) {
+    function (req, username, password, done) {
       db.User.find({where: {username: username}})
         .then(function (user) {
           if (!user) {}
