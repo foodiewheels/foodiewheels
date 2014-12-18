@@ -1,0 +1,8 @@
+{
+  "username": "foodiewheelsuser",
+  "password": "password",
+  "database": "foodiewheelsdb",
+  "host": "127.0.0.1",
+  "port": "5432",
+  "dialect": "postgres"
+}
