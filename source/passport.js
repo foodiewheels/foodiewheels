@@ -30,7 +30,7 @@ function authenticate (passport) {
           if (!user) {
             db.User.create({
               username: username,
-              password: db.User.generateHash(password)
+              password: this.generateHash(password)
             })
             .then(function (newUser) {
               return done(null, newUser);
