@@ -4,6 +4,7 @@ var express = require('express')
   , cookieParser = require('cookie-parser')
   , passport = require('passport')
   , db = require('./db')
+  , routes = require('./routes')
   ;
 
 var server = express();
@@ -22,19 +23,24 @@ server.use(passport.session());
 // POST Routes =================================================================
 server.post('/user/register',
   passport.authenticate('register'),
-  function (req, res) {
+  function (req, res, next) {
     res.send(req.user);
   })
 ;
 
 server.post('/user/login',
   passport.authenticate('login'),
-  function (req, res) {
+  function (req, res, next) {
     res.send(req.user);
   })
 ;
 
-// GET Routes ==================================================================
+// DELETE Routes ===============================================================
+server.delete('/user/:username',
+  function (req, res, next) {
+    return next();
+  }, routes.deleteUser)
+;
 
 module.exports = function (done) {
   db.sequelize.sync()

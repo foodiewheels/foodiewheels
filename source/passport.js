@@ -59,11 +59,12 @@ function authenticate (passport) {
     function (req, username, password, done) {
       db.User.find({where: {username: username}})
         .then(function (user) {
-          if (!user) {}
+          if (!user)
             return done(null, false);
           if (!user.validPassword(password))
             return done(null, false);
-          return done(null, user);
+          else
+            return done(null, user);
         })
         .catch(function (err) {
           return done(err);

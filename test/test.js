@@ -23,4 +23,23 @@ describe('Foodie Wheels REST API Tests', function () {
     ;
   });
 
+  it('POST login to a user account', function (done) {
+    var request = {
+      "username": "testuser",
+      "password": "testpassword"
+    };
+    supertest(server)
+      .post('/user/login')
+      .send(request)
+      .expect(200, done)
+    ;
+  });
+
+  it('DELETE a user account', function (done) {
+    supertest(server)
+      .delete('/user/testuser')
+      .expect(200, done)
+    ;
+  });
+
 });
