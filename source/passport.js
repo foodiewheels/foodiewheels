@@ -30,6 +30,7 @@ function authenticate (passport) {
           if (!user) {
             db.User.create({
               username: username,
+              email: req.body.email,
               password: this.generateHash(password)
             })
             .then(function (newUser) {
@@ -47,8 +48,8 @@ function authenticate (passport) {
           return done(err);
         })
       ;
-    }
-  ));
+    })
+  );
 
   passport.use('login',
     new LocalStrategy({
@@ -70,8 +71,8 @@ function authenticate (passport) {
           return done(err);
         })
       ;
-    }
-  ));
+    })
+  );
 }
 
 module.exports = authenticate;

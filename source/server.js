@@ -20,27 +20,109 @@ server.use(session({secret: 'secret', saveUninitialized: true, resave: true}));
 server.use(passport.initialize());
 server.use(passport.session());
 
-// POST Routes =================================================================
-server.post('/user/register',
-  passport.authenticate('register'),
-  function (req, res, next) {
-    res.send(req.user);
-  })
-;
-
-server.post('/user/login',
+// Login & Logout Routes =======================================================
+server.post('/api/v1/login',
   passport.authenticate('login'),
   function (req, res, next) {
     res.send(req.user);
   })
 ;
 
-// DELETE Routes ===============================================================
-server.delete('/user/:username',
+server.post('/api/v1/logout',
+  function (req, res, next) {
+
+  })
+;
+
+// User Routes =================================================================
+server.post('/api/v1/users',
+  passport.authenticate('register'),
+  function (req, res, next) {
+    res.send(req.user);
+  })
+;
+
+server.put('/api/v1/users/:username',
+  function (req, res, next) {
+
+  })
+;
+
+server.delete('/api/v1/users/:username',
   function (req, res, next) {
     return next();
   }, routes.deleteUser)
 ;
+
+// Truck Routes ================================================================
+server.post('/api/v1/trucks',
+  function (req, res, next) {
+
+  })
+;
+
+server.put('/api/v1/trucks/:truck',
+  function (req, res, next) {
+
+  })
+;
+
+server.get('/api/v1/trucks',
+  function (req, res, next) {
+
+  })
+;
+
+server.get('/api/v1/trucks/:truck',
+  function (req, res, next) {
+
+  })
+;
+
+server.get('/api/v1/trucks/:user',
+  function (req, res, next) {
+
+  })
+;
+
+server.del('/api/v1/trucks/:truck',
+  function (req, res, next) {
+
+  })
+;
+
+// Menu Routes =================================================================
+server.post('/api/v1/menus',
+  function (req, res, next) {
+
+  })
+;
+
+server.put('/api/v1/menus/:menu',
+  function (req, res, next) {
+
+  })
+;
+
+server.get('/api/v1/menus',
+  function (req, res, next) {
+
+  })
+;
+
+server.get('/api/v1/menus/:menu',
+  function (req, res, next) {
+
+  })
+;
+
+server.del('/api/v1/menus/:menu',
+  function (req, res, next) {
+
+  })
+;
+
+// Geography Routes ============================================================
 
 module.exports = function (done) {
   db.sequelize.sync()

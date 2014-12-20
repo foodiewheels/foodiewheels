@@ -14,10 +14,11 @@ describe('Foodie Wheels REST API Tests', function () {
   it('POST register a new user account', function (done) {
     var request = {
       "username": "testuser",
+      "email": "email@test.com",
       "password": "testpassword"
     };
     supertest(server)
-      .post('/user/register')
+      .post('/api/v1/users')
       .send(request)
       .expect(200, done)
     ;
@@ -26,10 +27,11 @@ describe('Foodie Wheels REST API Tests', function () {
   it('POST login to a user account', function (done) {
     var request = {
       "username": "testuser",
+      "email": "email@test.com",
       "password": "testpassword"
     };
     supertest(server)
-      .post('/user/login')
+      .post('/api/v1/login')
       .send(request)
       .expect(200, done)
     ;
@@ -37,7 +39,7 @@ describe('Foodie Wheels REST API Tests', function () {
 
   it('DELETE a user account', function (done) {
     supertest(server)
-      .delete('/user/testuser')
+      .delete('/api/v1/users/testuser')
       .expect(200, done)
     ;
   });
