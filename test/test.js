@@ -39,30 +39,17 @@ describe('Foodie Wheels REST API Tests', function () {
       .expect(200, done)
     ;
   });
-
+/*
   it('POST logout from a user accout', function (done) {
     agent
       .post('/api/v1/logout')
       .expect(200, done)
     ;
   });
-
-  it('POST register an account to delete', function (done) {
-    var request = {
-      "username": "testdeleteuser",
-      "email": "email@test.com",
-      "password": "testpassword"
-    };
-    agent
-      .post('/api/v1/users')
-      .send(request)
-      .expect(200, done)
-    ;
-  });
-
+*/
   it('DELETE a user account', function (done) {
     agent
-      .delete('/api/v1/users/testdeleteuser')
+      .delete('/api/v1/users/testuser')
       .expect(200, done)
     ;
   });

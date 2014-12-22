@@ -57,54 +57,54 @@ server.put('/api/v1/users/:username',
   checkAuthorization,
   function (req, res, next) {
 
-  })
+  }, routes.updateUsers)
 ;
 
 server.delete('/api/v1/users/:username',
   checkAuthorization,
   function (req, res, next) {
     return next();
-  }, routes.deleteUser)
+  }, routes.deleteUsers)
 ;
 
 // Truck Routes ================================================================
 server.post('/api/v1/trucks',
   checkAuthorization,
   function (req, res, next) {
-
-  })
+    return next();
+  }, routes.createTrucks)
 ;
 
 server.put('/api/v1/trucks/:truck',
   checkAuthorization,
   function (req, res, next) {
 
-  })
+  }, routes.updateTrucks)
 ;
 
 server.delete('/api/v1/trucks/:truck',
   checkAuthorization,
   function (req, res, next) {
 
-  })
+  }, routes.deleteTrucks)
 ;
 
 server.get('/api/v1/trucks',
   function (req, res, next) {
 
-  })
+  }, routes.getTrucks)
 ;
 
 server.get('/api/v1/trucks/:truck',
   function (req, res, next) {
 
-  })
+  }, routes.getTrucks)
 ;
 
 server.get('/api/v1/trucks/:user',
   function (req, res, next) {
 
-  })
+  }, routes.getTrucks)
 ;
 
 // Menu Routes =================================================================
@@ -112,37 +112,75 @@ server.post('/api/v1/trucks/:truck/menus',
   checkAuthorization,
   function (req, res, next) {
 
-  })
+  }, routes.createMenus)
 ;
 
 server.put('/api/v1/trucks/:truck/menus/:menu',
   checkAuthorization,
   function (req, res, next) {
 
-  })
+  }, routes.updateMenus)
 ;
 
 server.delete('/api/v1/trucks/:truck/menus/:menu',
   checkAuthorization,
   function (req, res, next) {
 
-  })
+  }, routes.deleteMenus)
 ;
 
 server.get('/api/v1/trucks/:truck/menus',
   function (req, res, next) {
 
-  })
+  }, routes.getMenus)
 ;
 
 server.get('/api/v1/trucks/:truck/menus/:menu',
   function (req, res, next) {
 
-  })
+  }, routes.getMenus)
 ;
 
 // Geography Routes ============================================================
+server.post('/api/v1/trucks/:truck/locations',
+  checkAuthorization,
+  function (req, res, next) {
 
+  }, routes.createLocation)
+;
+
+server.post('/api/v1/trucks/:truck/routes',
+  checkAuthorization,
+  function (req, res, next) {
+
+  }, routes.createRoutes)
+;
+
+server.put('/api/v1/trucks/:truck/routes/:route',
+  checkAuthorization,
+  function (req, res, next) {
+
+  }, routes.updateRoutes)
+;
+
+server.delete('/api/v1/trucks/:truck/routes/:route',
+  checkAuthorization,
+  function (req, res, next) {
+
+  }, routes.deleteRoutes)
+;
+
+server.get('/api/v1/trucks/locations',
+  function (req, res, next) {
+
+  }, routes.getLocations)
+;
+
+server.get('/api/v1/trucks/:truck/locations',
+  function (req, res, next) {
+
+  }, routes.getLocations)
+;
 
 module.exports = function (done) {
   db.sequelize.sync()
