@@ -88,7 +88,7 @@ server.delete('/api/v1/trucks/:truck',
 
   }, routes.deleteTrucks)
 ;
-
+/*
 server.get('/api/v1/trucks',
   function (req, res, next) {
 
@@ -181,7 +181,7 @@ server.get('/api/v1/trucks/:truck/locations',
 
   }, routes.getLocations)
 ;
-
+*/
 module.exports = function (done) {
   db.sequelize.sync()
     .then(function () {

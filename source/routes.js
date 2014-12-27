@@ -7,7 +7,7 @@ function updateUsers (req, res, next) {
 function deleteUsers (req, res, next) {
   var username = req.params.username || username;
   if (!username) return res.status(404).end();
-  db.User.find({where: {username: username}})
+  db.User.find({ where: { username: username }})
     .then(function (user) {
       user.destroy()
         .then(function (done) {
@@ -25,7 +25,13 @@ function deleteUsers (req, res, next) {
 }
 
 function createTrucks (req, res, next) {
+  db.Truck.find({ where: { name: name }})
+    .then(function (truck) {
 
+    })
+    .catch(function (err) {
+      return res.status(404).end();
+    })
 }
 
 function updateTrucks (req, res, next) {
