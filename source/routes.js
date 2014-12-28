@@ -1,37 +1,71 @@
 var db = require('./db')
 
 function updateUsers (req, res, next) {
+  var username = req.params.username || username
+    , data = req.body || data
+    ;
 
+  if (!username) return res.status(500).end();
+  db.User.update(data, { where: { username: username }})
+    .then(function (rows) {
+      return res.status(200).end();
+    })
+    .catch(function (err) {
+      return res.status(500).end();
+    })
+  ;
 }
 
 function deleteUsers (req, res, next) {
   var username = req.params.username || username;
-  if (!username) return res.status(404).end();
+  if (!username) return res.status(500).end();
   db.User.find({ where: { username: username }})
     .then(function (user) {
       user.destroy()
         .then(function (done) {
-          res.status(200).end();
+          return res.status(200).end();
         })
         .catch(function (err) {
-          return res.status(404).end();
+          return res.status(500).end();
         })
       ;
     })
     .catch(function (err) {
-      return res.status(404).end();
+      return res.status(500).end();
     })
   ;
 }
 
 function createTrucks (req, res, next) {
-  db.Truck.find({ where: { name: name }})
+  var data = {
+    "name": req.body.name,
+    "description": req.body.description,
+    "owners": req.body.owners,
+    "phone": req.body.phone,
+    "email": req.body.email,
+    "website": req.body.website,
+    "active": req.body.active
+  };
+  if (!data.name) return res.status(500).end();
+  db.Truck.find({ where: { name: data.name }})
     .then(function (truck) {
-
+      if (!truck) {
+        db.Truck.create(data)
+        .then(function (newTruck) {
+          return res.status(200).end();
+        })
+        .catch(function (err) {
+          return res.status(500).end();
+        })
+      }
+      else {
+        return res.status(200).end();
+      }
     })
     .catch(function (err) {
-      return res.status(404).end();
+      return res.status(500).end();
     })
+  ;
 }
 
 function updateTrucks (req, res, next) {
@@ -39,7 +73,23 @@ function updateTrucks (req, res, next) {
 }
 
 function deleteTrucks (req, res, next) {
-
+  var truck = req.params.truck || truck;
+  if (!truck) return res.status(500).end();
+  db.Truck.find({ where: { name: truck }})
+    .then(function (truck) {
+      truck.destroy()
+        .then(function (done) {
+          return res.status(200).end();
+        })
+        .catch(function (err) {
+          return res.status(500).end();
+        })
+      ;
+    })
+    .catch(function (err) {
+      return res.status(500).end();
+    })
+  ;
 }
 
 function getTrucks (req, res, next) {
