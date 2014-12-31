@@ -98,7 +98,7 @@ describe('Foodie Wheels REST API Tests', function () {
 
   it('DELETE a food truck', function (done) {
     agent
-      .delete('/api/v1/trucks/testfoodtruck')
+      .delete('/api/v1/trucks/updated_testfoodtruck')
       .expect(200, done)
     ;
   })

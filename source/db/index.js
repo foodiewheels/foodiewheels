@@ -36,9 +36,8 @@ db.prototype.init = function (options) {
   models = Object.keys(self);
 
   for (i = 0; i < models.length; i++) {
-    if ('associate' in self[models[i]]) {
+    if ('associate' in self[models[i]])
       self[models[i]].associate(self);
-    }
   }
 }
 
@@ -51,13 +50,11 @@ db.prototype.getModel = function (table) {
   models = Object.keys(self);
 
   for (i = 0; i < models.length; i++) {
-    if (models[i].name === table) {
-      return models[i];
-    }
-    else {
-      return null;
-    }
+    if (models[i] === table)
+      return self[models[i]];
   }
+
+  return null;
 }
 
 db.prototype.create = function (table, callback, options) {
@@ -68,10 +65,11 @@ db.prototype.create = function (table, callback, options) {
   model = self.getModel(table);
   model
     .find(options.where)
-    .then(function (item) {
+    .then(function (record) {
+      if (record) callback('error');
       model
         .create(options.data)
-        .then(function (record) {
+        .then(function (done) {
           callback(null, 'success');
         })
         .catch(function (err) {
@@ -127,8 +125,16 @@ db.prototype.delete = function (table, callback, options) {
   model = self.getModel(table);
   model
     .find(options.where)
-    .then(function (item) {
-      callback(null, 'success');
+    .then(function (record) {
+      record
+        .destroy()
+        .then(function (done) {
+          callback(null, 'success');
+        })
+        .catch(function (err) {
+          callback('error');
+        })
+      ;
     })
     .catch(function (err) {
       callback('error');

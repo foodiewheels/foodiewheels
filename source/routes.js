@@ -5,93 +5,89 @@ db = new foodieDB();
 function updateUsers (req, res, next) {
   var username = req.params.username || username
     , data = req.body || data
+    , options = {}
     ;
 
+  options.data = data
+  options.where = { "where": { "username": data.username }};
+
   if (!username) return res.status(500).end();
-  db.User.update(data, { where: { username: username }})
-    .then(function (rows) {
-      return res.status(200).end();
-    })
-    .catch(function (err) {
-      return res.status(500).end();
-    })
-  ;
+
+  db.update('User', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function deleteUsers (req, res, next) {
-  var username = req.params.username || username;
+  var username = req.params.username || username
+    , options = {}
+    ;
+
+  options.where = { "where": { "username": username }};
+
   if (!username) return res.status(500).end();
-  db.User.find({ where: { username: username }})
-    .then(function (user) {
-      user.destroy()
-        .then(function (done) {
-          return res.status(200).end();
-        })
-        .catch(function (err) {
-          return res.status(500).end();
-        })
-      ;
-    })
-    .catch(function (err) {
-      return res.status(500).end();
-    })
-  ;
+
+  db.delete('User', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function createTrucks (req, res, next) {
   var data = {
-    "name": req.body.name,
-    "description": req.body.description,
-    "owners": req.body.owners,
-    "phone": req.body.phone,
-    "email": req.body.email,
-    "website": req.body.website,
-    "active": req.body.active
-  };
+        "name": req.body.name,
+        "description": req.body.description,
+        "owners": req.body.owners,
+        "phone": req.body.phone,
+        "email": req.body.email,
+        "website": req.body.website,
+        "active": req.body.active
+      }
+    , options = {};
+    ;
+
+  options.data = data;
+  options.where = { "where": { "name": data.name }};
+
   if (!data.name) return res.status(500).end();
-  db.Truck.find({ where: { name: data.name }})
-    .then(function (truck) {
-      if (!truck) {
-        db.Truck.create(data)
-        .then(function (newTruck) {
-          return res.status(200).end();
-        })
-        .catch(function (err) {
-          return res.status(500).end();
-        })
-      }
-      else {
-        return res.status(200).end();
-      }
-    })
-    .catch(function (err) {
-      return res.status(500).end();
-    })
-  ;
+
+  db.create('Truck', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function updateTrucks (req, res, next) {
+  var truck = req.params.truck || truck
+    , data = req.body || data
+    , options = {}
+    ;
 
+  options.data = data
+  options.where = { "where": { "name": truck }};
+
+  if (!truck) return res.status(500).end();
+
+  db.update('Truck', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function deleteTrucks (req, res, next) {
-  var truck = req.params.truck || truck;
+  var truck = req.params.truck || truck
+    , options = {}
+    ;
+
+  options.where = { "where": { "name": truck }};
+
   if (!truck) return res.status(500).end();
-  db.Truck.find({ where: { name: truck }})
-    .then(function (truck) {
-      truck.destroy()
-        .then(function (done) {
-          return res.status(200).end();
-        })
-        .catch(function (err) {
-          return res.status(500).end();
-        })
-      ;
-    })
-    .catch(function (err) {
-      return res.status(500).end();
-    })
-  ;
+
+  db.delete('Truck', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function getTrucks (req, res, next) {
