@@ -1,6 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy
-  , db = require('./db')
+  , foodieDB = require('./db')
   ;
+
+db = new foodieDB();
 
 function authenticate (passport) {
   passport.serializeUser(function (user, done) {

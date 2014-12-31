@@ -1,4 +1,6 @@
-var db = require('./db')
+var foodieDB = require('./db');
+
+db = new foodieDB();
 
 function updateUsers (req, res, next) {
   var username = req.params.username || username
