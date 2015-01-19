@@ -95,11 +95,40 @@ function getTrucks (req, res, next) {
 }
 
 function createMenus (req, res, next) {
+  var data = {
+        "title": req.body.title,
+        "description": req.body.description,
+        "items": req.body.items
+      }
+    , options = {}
+    ;
 
+  options.data = data;
+  options.where = { "where": { "title": data.title }};
+
+  if (!data.title) return res.status(500).end();
+
+  db.create('Menu', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function updateMenus (req, res, next) {
+  var menu = req.params.menu || menu
+    , data = req.body || data
+    , options = {}
+    ;
 
+  options.data = data
+  options.where = { "where": { "title": data.title }};
+
+  if (!menu) return res.status(500).end();
+
+  db.update('Menu', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function deleteMenus (req, res, next) {

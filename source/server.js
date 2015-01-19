@@ -107,6 +107,7 @@ server.get('/api/v1/trucks/:user',
     return next();
   }, routes.getTrucks)
 ;
+*/
 
 // Menu Routes =================================================================
 server.post('/api/v1/trucks/:truck/menus',
@@ -122,7 +123,7 @@ server.put('/api/v1/trucks/:truck/menus/:menu',
     return next();
   }, routes.updateMenus)
 ;
-
+/*
 server.delete('/api/v1/trucks/:truck/menus/:menu',
   checkAuthorization,
   function (req, res, next) {
