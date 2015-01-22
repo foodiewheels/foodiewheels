@@ -98,13 +98,20 @@ describe('Foodie Wheels REST API Tests', function () {
 
   it('POST a new menu', function (done) {
     var request = {
-      "title": "best food ever",
+      "title": "bestfoodever",
       "description": "mmmm",
       "items": "whole lotta rosie"
     };
     agent
       .post('/api/v1/trucks/updated_testfoodtruck/menus')
       .send(request)
+      .expect(200, done)
+    ;
+  });
+
+  it('DELETE a menu', function (done) {
+    agent
+      .delete('/api/v1/trucks/updated_testfoodtruck/menus/bestfoodever')
       .expect(200, done)
     ;
   });

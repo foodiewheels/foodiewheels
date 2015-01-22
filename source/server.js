@@ -123,14 +123,14 @@ server.put('/api/v1/trucks/:truck/menus/:menu',
     return next();
   }, routes.updateMenus)
 ;
-/*
+
 server.delete('/api/v1/trucks/:truck/menus/:menu',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.deleteMenus)
 ;
-
+/*
 server.get('/api/v1/trucks/:truck/menus',
   function (req, res, next) {
     return next();

@@ -114,6 +114,7 @@ function createMenus (req, res, next) {
   }, options);
 }
 
+// Needs a test
 function updateMenus (req, res, next) {
   var menu = req.params.menu || menu
     , data = req.body || data
@@ -131,8 +132,21 @@ function updateMenus (req, res, next) {
   }, options);
 }
 
+// Need two where clauses here, one for the truck and the other
+// for the menu
 function deleteMenus (req, res, next) {
+  var menu = req.params.menu || menu
+    , options = {}
+    ;
 
+  options.where = { "where": { "name": menu }};
+
+  if (!menu) return res.status(500).end();
+
+  db.delete('Menu', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function getMenus (req, res, next) {
