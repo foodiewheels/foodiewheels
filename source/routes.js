@@ -98,15 +98,16 @@ function createMenus (req, res, next) {
   var data = {
         "title": req.body.title,
         "description": req.body.description,
-        "items": req.body.items
+        "items": req.body.items,
+        "truck": req.params.truck
       }
     , options = {}
     ;
 
   options.data = data;
-  options.where = { "where": { "title": data.title }};
+  options.where = { "where": { "title": data.title, "truck": data.truck }};
 
-  if (!data.title) return res.status(500).end();
+  if (!data.title || !data.truck) return res.status(500).end();
 
   db.create('Menu', function (err, done) {
     if (err) return res.status(500).end();
@@ -114,7 +115,6 @@ function createMenus (req, res, next) {
   }, options);
 }
 
-// Needs a test
 function updateMenus (req, res, next) {
   var menu = req.params.menu || menu
     , data = req.body || data
@@ -132,16 +132,15 @@ function updateMenus (req, res, next) {
   }, options);
 }
 
-// Need two where clauses here, one for the truck and the other
-// for the menu
 function deleteMenus (req, res, next) {
   var menu = req.params.menu || menu
+    , truck = req.params.truck || truck
     , options = {}
     ;
 
-  options.where = { "where": { "name": menu }};
+  options.where = { "where": { "title": menu, "truck": truck }};
 
-  if (!menu) return res.status(500).end();
+  if (!menu || !truck) return res.status(500).end();
 
   db.delete('Menu', function (err, done) {
     if (err) return res.status(500).end();
