@@ -96,6 +96,13 @@ describe('Foodie Wheels REST API Tests', function () {
     ;
   });
 
+  it('GET all the food trucks', function (done) {
+    agent
+      .get('/api/v1/trucks/testfoodtruck')
+      .expect(200, done)
+    ;
+  })
+
   it('POST a new menu', function (done) {
     var request = {
       "title": "bestfoodever",

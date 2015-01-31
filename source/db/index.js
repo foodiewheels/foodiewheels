@@ -85,14 +85,22 @@ db.prototype.create = function (table, callback, options) {
 
 db.prototype.read = function (options) {
   var self = this
+    , finder
     , model
     ;
+
+  if (options.where) {
+    finder = find(options.where);
+  }
+  else {
+    finder = findAll();
+  }
 
   model = self.getModel(table);
   model
     .find(options.where)
     .then(function (record) {
-      callback(null, 'success');
+      callback(null, record);
     })
     .catch(function (err) {
       callback('error');

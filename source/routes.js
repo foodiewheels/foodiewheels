@@ -8,7 +8,7 @@ function updateUsers (req, res, next) {
     , options = {}
     ;
 
-  options.data = data
+  options.data = data;
   options.where = { "where": { "username": data.username }};
 
   if (!username) return res.status(500).end();
@@ -91,7 +91,15 @@ function deleteTrucks (req, res, next) {
 }
 
 function getTrucks (req, res, next) {
+  var options = {};
+  if (req.params.truck) {
+    options.where = { "where": { "name": req.params.truck }};
+  }
 
+  db.read('Truck', function (err, done) {
+    if (err) return res.status(500).end();
+    else return res.status(200).end();
+  }, options);
 }
 
 function createMenus (req, res, next) {

@@ -101,12 +101,6 @@ server.get('/api/v1/trucks/:truck',
     return next();
   }, routes.getTrucks)
 ;
-
-server.get('/api/v1/trucks/:user',
-  function (req, res, next) {
-    return next();
-  }, routes.getTrucks)
-;
 */
 
 // Menu Routes =================================================================
