@@ -1,8 +1,12 @@
 {
-  "username": "foodiewheelsuser",
-  "password": "password",
-  "database": "foodiewheelsdb",
-  "host": "127.0.0.1",
-  "port": "5432",
-  "dialect": "postgres"
+  "db": {
+    "client": "postgres",
+    "connection": {
+      "host": "127.0.0.1",
+      "user": "foodiewheelsuser",
+      "password": "password",
+      "database": "foodiewheelsdb",
+      "charset": "utf8"
+    }
+  }
 }
