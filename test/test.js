@@ -6,7 +6,7 @@ describe('Foodie Wheels REST API Tests', function () {
     ;
 
   before(function (done) {
-    require('../source/server')(function (err, app) {
+    require('../lib/server')(function (err, app) {
       if (err) throw err;
       server = app;
       agent = supertest.agent(server);
@@ -27,6 +27,7 @@ describe('Foodie Wheels REST API Tests', function () {
     ;
   });
 
+/*
   it('POST login to a user account', function (done) {
     var request = {
       "username": "testuser",
@@ -40,14 +41,12 @@ describe('Foodie Wheels REST API Tests', function () {
     ;
   });
 
-/*
   it('POST logout from a user accout', function (done) {
     agent
       .post('/api/v1/logout')
       .expect(200, done)
     ;
   });
-*/
 
   it('PUT user account changes', function (done) {
     var request = {
@@ -138,5 +137,5 @@ describe('Foodie Wheels REST API Tests', function () {
       .expect(200, done)
     ;
   });
-
+*/
 });
