@@ -27,7 +27,6 @@ describe('Foodie Wheels REST API Tests', function () {
     ;
   });
 
-/*
   it('POST login to a user account', function (done) {
     var request = {
       "username": "testuser",
@@ -48,6 +47,7 @@ describe('Foodie Wheels REST API Tests', function () {
     ;
   });
 
+/*
   it('PUT user account changes', function (done) {
     var request = {
       "username": "testuser",
