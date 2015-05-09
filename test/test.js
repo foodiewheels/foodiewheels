@@ -237,7 +237,8 @@ describe('Foodie Wheels REST API Tests', function () {
       var request = {
         "title": "bestfoodever",
         "description": "mmmm",
-        "items": "whole lotta rosie"
+        "items": '{"menu": "yup a menu"}',
+        "active": true
       };
       agent
         .post('/api/v1/trucks/testfoodtruck/menus')
