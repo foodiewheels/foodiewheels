@@ -247,6 +247,20 @@ describe('Foodie Wheels REST API Tests', function () {
       ;
     });
 
+    it('GET a single menu from a food truck', function (done) {
+      agent
+        .get('/api/v1/trucks/testfoodtruck/menus/bestfoodever')
+        .expect(200, done)
+      ;
+    });
+
+    it('GET all menus from a food truck', function (done) {
+      agent
+        .get('/api/v1/trucks/testfoodtruck/menus')
+        .expect(200, done)
+      ;
+    });
+
     it('DELETE a food truck', function (done) {
       agent
         .delete('/api/v1/trucks/testfoodtruck')
@@ -268,30 +282,5 @@ describe('Foodie Wheels REST API Tests', function () {
     });
 
   });
-
-/*
-  it('DELETE a menu', function (done) {
-    agent
-      .delete('/api/v1/trucks/updated_testfoodtruck/menus/bestfoodever')
-      .expect(200, done)
-    ;
-  });
-
-  // Needs to come after menus, menus belong to trucks
-  it('DELETE a food truck', function (done) {
-    agent
-      .delete('/api/v1/trucks/updated_testfoodtruck')
-      .expect(200, done)
-    ;
-  })
-
-  // Needs to come last, test require user auth to pass
-  it('DELETE a user account', function (done) {
-    agent
-      .delete('/api/v1/users/testuser')
-      .expect(200, done)
-    ;
-  });
-*/
 
 });
