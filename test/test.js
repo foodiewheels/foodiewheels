@@ -261,7 +261,7 @@ describe('Foodie Wheels REST API Tests', function () {
       ;
     });
 
-    it('PUT changes to food truck', function (done) {
+    it('PUT changes to a menu', function (done) {
       var request = {
         "title": "worstfoodever",
         "description": "mmmm",
@@ -271,6 +271,13 @@ describe('Foodie Wheels REST API Tests', function () {
       agent
         .put('/api/v1/trucks/testfoodtruck/menus/bestfoodever')
         .send(request)
+        .expect(200, done)
+      ;
+    });
+
+    it('DELETE a menu', function (done) {
+      agent
+        .delete('/api/v1/trucks/testfoodtruck/menus/worstfoodever')
         .expect(200, done)
       ;
     });
