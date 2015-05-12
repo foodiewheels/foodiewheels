@@ -261,6 +261,20 @@ describe('Foodie Wheels REST API Tests', function () {
       ;
     });
 
+    it('PUT changes to food truck', function (done) {
+      var request = {
+        "title": "worstfoodever",
+        "description": "mmmm",
+        "items": '{"menu": "yup a menu"}',
+        "active": true
+      };
+      agent
+        .put('/api/v1/trucks/testfoodtruck/menus/bestfoodever')
+        .send(request)
+        .expect(200, done)
+      ;
+    });
+
     it('DELETE a food truck', function (done) {
       agent
         .delete('/api/v1/trucks/testfoodtruck')
