@@ -304,4 +304,111 @@ describe('Foodie Wheels REST API Tests', function () {
 
   });
 
+  describe('GEOGRAPHY Tests', function () {
+
+    it('POST register a new user account', function (done) {
+      var request = {
+        "username": "testuser",
+        "email": "email@test.com",
+        "password": "testpassword"
+      };
+      agent
+        .post('/api/v1/users')
+        .send(request)
+        .expect(200, done)
+      ;
+    });
+
+    it('POST login to a user account', function (done) {
+      var request = {
+        "username": "testuser",
+        "email": "email@test.com",
+        "password": "testpassword"
+      };
+      agent
+        .post('/api/v1/login')
+        .send(request)
+        .expect(200, done)
+      ;
+    });
+
+    it('POST a new food truck', function (done) {
+      var request = {
+        "name": "testfoodtruck",
+        "description": "This is a test food truck",
+        "owners": '{"owners": ["testuser"]}',
+        "phone": "1234567890",
+        "email": "testfoodtruck@test.com",
+        "website": "www.testfoodtruck.com",
+        "active": true
+      };
+      agent
+        .post('/api/v1/trucks')
+        .send(request)
+        .expect(200, done)
+      ;
+    });
+
+    it('POST a current location', function (done) {
+      var request = {
+        "address": "123 Fake St",
+        "state": "AZ",
+        "city": "Tucson",
+        "county": "Pima",
+        "zipcode": 85716,
+        "lat_lng": [32.215766, -110.924660],
+        "active": true
+      };
+    });
+
+    it('PUT updates to a current location', function (done) {
+
+    });
+
+    it('DELETE a current location', function (done) {
+
+    });
+
+    it('POST a new route', function (done) {
+
+    });
+
+    it('PUT updates to a route', function (done) {
+
+    });
+
+    it('DELETE a route', function (done) {
+
+    });
+
+    it('GET all truck locations', function (done) {
+
+    });
+
+    it('GET a truck location', function (done) {
+
+    });
+
+    it('DELETE a food truck', function (done) {
+      agent
+        .delete('/api/v1/trucks/testfoodtruck')
+        .expect(200, done)
+      ;
+    });
+
+    it('DELETE a user account', function (done) {
+      var request = {
+        "username": "testuser",
+        "email": "email@test.com",
+        "password": "testpassword"
+      };
+      agent
+        .delete('/api/v1/users/testuser')
+        .send(request)
+        .expect(200, done)
+      ;
+    });
+
+  });
+
 });
