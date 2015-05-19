@@ -348,7 +348,7 @@ describe('Foodie Wheels REST API Tests', function () {
         .expect(200, done)
       ;
     });
-
+/*
     it('POST a current location', function (done) {
       var request = {
         "address": "123 Fake St",
@@ -356,7 +356,8 @@ describe('Foodie Wheels REST API Tests', function () {
         "city": "Tucson",
         "county": "Pima",
         "zipcode": 85716,
-        "lat_lng": [32.215766, -110.924660],
+        "lat": 32.215766,
+        "lng": -110.924660,
         "active": true
       };
     });
@@ -388,7 +389,7 @@ describe('Foodie Wheels REST API Tests', function () {
     it('GET a truck location', function (done) {
 
     });
-
+*/
     it('DELETE a food truck', function (done) {
       agent
         .delete('/api/v1/trucks/testfoodtruck')
