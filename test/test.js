@@ -348,7 +348,7 @@ describe('Foodie Wheels REST API Tests', function () {
         .expect(200, done)
       ;
     });
-/*
+
     it('POST a current location', function (done) {
       var request = {
         "address": "123 Fake St",
@@ -360,8 +360,13 @@ describe('Foodie Wheels REST API Tests', function () {
         "lng": -110.924660,
         "active": true
       };
+      agent
+        .post('/api/v1/trucks/testfoodtruck/locations')
+        .send(request)
+        .expect(200, done)
+      ;
     });
-
+/*
     it('PUT updates to a current location', function (done) {
 
     });
