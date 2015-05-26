@@ -366,11 +366,25 @@ describe('Foodie Wheels REST API Tests', function () {
         .expect(200, done)
       ;
     });
-/*
+
     it('PUT updates to a current location', function (done) {
-
+      var request = {
+        "address": "123 Fake St",
+        "state": "AZ",
+        "city": "Tucson",
+        "county": "Pima",
+        "zipcode": 85716,
+        "lat": 33.215766,
+        "lng": -111.924660,
+        "active": true
+      };
+      agent
+        .put('/api/v1/trucks/testfoodtruck/locations/current')
+        .send(request)
+        .expect(200, done)
+      ;
     });
-
+/*
     it('DELETE a current location', function (done) {
 
     });
