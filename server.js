@@ -36,14 +36,14 @@ function checkAuthorization (req, res, next) {
 }
 
 // Login & Logout Routes =======================================================
-server.post('/api/v1/login',
+server.post('/users/login/',
   passport.authenticate('login'),
   function (req, res, next) {
     res.status(200).end();
   })
 ;
 
-server.post('/api/v1/logout',
+server.post('/users/logout/',
   checkAuthorization,
   function (req, res, next) {
     req.logout();
@@ -52,21 +52,21 @@ server.post('/api/v1/logout',
 ;
 
 // User Routes =================================================================
-server.post('/api/v1/users',
+server.post('/users/',
   passport.authenticate('register'),
   function (req, res, next) {
     res.send(req.user);
   })
 ;
 
-server.put('/api/v1/users/:username',
+server.put('/users/:username/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.updateUser)
 ;
 
-server.delete('/api/v1/users/:username',
+server.delete('/users/:username/',
   checkAuthorization,
   function (req, res, next) {
     return next();
@@ -74,123 +74,123 @@ server.delete('/api/v1/users/:username',
 ;
 
 // Truck Routes ================================================================
-server.post('/api/v1/trucks',
+server.post('/trucks/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.createTruck)
 ;
 
-server.put('/api/v1/trucks/:truck',
+server.put('/trucks/:truck/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.updateTruck)
 ;
 
-server.delete('/api/v1/trucks/:truck',
+server.delete('/trucks/:truck/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.deleteTruck)
 ;
 
-server.get('/api/v1/trucks',
+server.get('/trucks/',
   function (req, res, next) {
     return next();
   }, routes.getTruck)
 ;
 
-server.get('/api/v1/trucks/:truck',
+server.get('/trucks/:truck/',
   function (req, res, next) {
     return next();
   }, routes.getTruck)
 ;
 
 // Menu Routes =================================================================
-server.post('/api/v1/trucks/:truck/menus',
+server.post('/trucks/:truck/menus/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.createMenu)
 ;
 
-server.put('/api/v1/trucks/:truck/menus/:menu',
+server.put('/trucks/:truck/menus/:menu/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.updateMenu)
 ;
 
-server.delete('/api/v1/trucks/:truck/menus/:menu',
+server.delete('/trucks/:truck/menus/:menu/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.deleteMenu)
 ;
 
-server.get('/api/v1/trucks/:truck/menus',
+server.get('/trucks/:truck/menus/',
   function (req, res, next) {
     return next();
   }, routes.getMenu)
 ;
 
-server.get('/api/v1/trucks/:truck/menus/:menu',
+server.get('/trucks/:truck/menus/:menu/',
   function (req, res, next) {
     return next();
   }, routes.getMenu)
 ;
 
 // Geography Routes ============================================================
-server.post('/api/v1/trucks/:truck/locations',
+server.post('/trucks/:truck/locations/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.createLocation)
 ;
 
-server.put('/api/v1/trucks/:truck/locations/:location',
+server.put('/trucks/:truck/locations/:location/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.updateLocation)
 ;
 
-server.delete('/api/v1/trucks/:truck/locations/:location',
+server.delete('/trucks/:truck/locations/:location/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.deleteLocation)
 ;
 
-server.post('/api/v1/trucks/:truck/routes',
+server.post('/trucks/:truck/routes/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.createRoute)
 ;
 
-server.put('/api/v1/trucks/:truck/routes/:route',
+server.put('/trucks/:truck/routes/:route/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.updateRoute)
 ;
 
-server.delete('/api/v1/trucks/:truck/routes/:route',
+server.delete('/trucks/:truck/routes/:route/',
   checkAuthorization,
   function (req, res, next) {
     return next();
   }, routes.deleteRoute)
 ;
 
-server.get('/api/v1/trucks/locations',
+server.get('/trucks/locations//',
   function (req, res, next) {
     return next();
   }, routes.getLocation)
 ;
 
-server.get('/api/v1/trucks/:truck/locations',
+server.get('/trucks/:truck/locations',
   function (req, res, next) {
     return next();
   }, routes.getLocation)
