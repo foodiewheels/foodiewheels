@@ -1,14 +1,16 @@
 var express = require('express')
+  , logger = require('morgan')
   , cookieParser = require('cookie-parser')
   , session = require('express-session')
   , bodyParser = require('body-parser')
   , passport = require('passport')
-  , foodieDB = require('./db')
-  , db = new foodieDB()
-  , routes = require('./routes')(db)
+  , database = require('./database')
+  , routes = require('./routes')(database)
+  , server = express()
 ;
 
-var server = express();
+server.use(logger());
+
 server.set('port', process.env.PORT || 3030);
 
 server.use(cookieParser('secret'));
@@ -17,17 +19,20 @@ server.use(bodyParser.json({limit: '25mb'}));
 
 require('./passport')(passport);
 
-server.use(session({secret: 'secret'}));
+server.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
+
 server.use(passport.initialize());
 server.use(passport.session());
 
+server.enable('trust proxy');
+
 function checkAuthorization (req, res, next) {
-  if (req.isAuthenticated && req.user.id) {
-    return next();
-  }
-  else {
-    res.status(401).end();
-  }
+  if (req.isAuthenticated && req.user.id) return next();
+  else res.status(401).send("Unauthorized request!");
 }
 
 // Login & Logout Routes =======================================================
@@ -192,12 +197,5 @@ server.get('/api/v1/trucks/:truck/locations',
 ;
 
 module.exports = function (callback) {
-  db.sync()
-    .then(function () {
-      callback(null, server);
-    })
-    .otherwise(function (error) {
-      callback(error);
-    })
-  ;
+  callback(server);
 }

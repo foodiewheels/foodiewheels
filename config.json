@@ -3,9 +3,9 @@
     "client": "postgres",
     "connection": {
       "host": "127.0.0.1",
-      "user": "foodiewheelsuser",
+      "user": "foodiewheels_user",
       "password": "password",
-      "database": "foodiewheelsdb",
+      "database": "foodiewheels_db",
       "charset": "utf8"
     }
   }
